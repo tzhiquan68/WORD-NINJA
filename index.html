@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="WORD NINJA — Slice Words. Master English. 滑动切词的英语学习动作游戏。">
+  <title>WORD NINJA — Slice Words. Master English.</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WORD NINJA">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="styles/main.css?v=2.7.0">
+  <link rel="stylesheet" href="styles/stage.css?v=2.7.0">
+  <link rel="stylesheet" href="styles/spell.css?v=2.7.0">
+  <link rel="stylesheet" href="styles/visual.css?v=2.7.0">
+</head>
+<body>
+  <canvas id="game" aria-label="WORD NINJA 游戏画面"></canvas>
+
+  <div id="ui">
+    <section class="screen" data-screen="home"></section>
+    <section class="screen" data-screen="map"></section>
+    <section class="screen" data-screen="stagewords"></section>
+    <section class="screen" data-screen="result"></section>
+    <section class="screen" data-screen="wordbook"></section>
+    <section class="screen" data-screen="report"></section>
+    <section class="screen" data-screen="settings"></section>
+    <section class="screen" data-screen="spell"><div id="spell-root"></div></section>
+    <section class="screen overlay" data-screen="pause"></section>
+    <div class="toast" data-screen="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <noscript>
+    <div class="fatal"><h2>需要启用 JavaScript</h2><p>WORD NINJA 是一个纯前端游戏，请允许浏览器运行脚本。</p></div>
+  </noscript>
+
+  <!-- 零构建：按依赖顺序加载普通脚本，双击 index.html 即可运行 -->
+  <!-- ?v= 版本号用于破缓存：改了代码后浏览器一定会重新加载，不会拿旧版 -->
+  <script src="src/core/util.js?v=2.7.0"></script>
+  <script src="src/core/i18n.js?v=2.7.0"></script>
+  <script src="data/i18n.es.js?v=2.7.0"></script>
+  <script src="data/i18n.ja.js?v=2.7.0"></script>
+  <script src="data/i18n.ko.js?v=2.7.0"></script>
+  <script src="data/i18n.vi.js?v=2.7.0"></script>
+  <script src="src/core/store.js?v=2.7.0"></script>
+  <script src="src/core/srs.js?v=2.7.0"></script>
+  <script src="src/core/audio.js?v=2.7.0"></script>
+  <script src="data/words.js?v=2.7.0"></script>
+  <script src="data/meanings.js?v=2.7.0"></script>
+  <script src="src/data/lexicon.js?v=2.7.0"></script>
+  <script src="src/game/blade.js?v=2.7.0"></script>
+  <script src="src/game/entities.js?v=2.7.0"></script>
+  <script src="src/game/sprite.js?v=2.7.0"></script>
+  <script src="src/game/render.js?v=2.7.0"></script>
+  <script src="src/game/scene.js?v=2.7.0"></script>
+  <script src="src/game/spell.js?v=2.7.0"></script>
+  <script src="src/ui/hud.js?v=2.7.0"></script>
+  <script src="src/ui/screens.js?v=2.7.0"></script>
+  <script src="src/app.js?v=2.7.0"></script>
+  <script src="src/main.js?v=2.7.0"></script>
+  <script>
+    // PWA 只在 http(s) 下启用：file:// 双击打开时浏览器会因 CORS 拒绝 manifest，没必要自找报错
+    if (location.protocol.indexOf('http') === 0) {
+      var ml = document.createElement('link');
+      ml.rel = 'manifest';
+      ml.href = 'manifest.webmanifest';
+      document.head.appendChild(ml);
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('sw.js').catch(function () { /* 忽略：不影响游戏 */ });
+        });
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+/* 阶段化关卡（v0.3.0）新增样式 */
+.stage-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.stage-progress .bar { flex: 1 1 auto; margin: 0; height: 8px; }
+.stage-progress .bar i {
+  background: linear-gradient(90deg, var(--wc), #ffffffcc);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--wc) 60%, transparent);
+}
+.stage-count {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.stage-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+.done-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #06231a;
+  background: linear-gradient(180deg, #9ff5c4, #3ecf87);
+  padding: 2px 9px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(62, 207, 135, 0.3);
+}
+.stars-line { font-size: 11px; letter-spacing: 1px; }
+
+.world.done { border-color: rgba(120, 240, 180, 0.3); }
+.world.done::before { background: #46d68f; box-shadow: 0 0 20px #46d68f; }
+
+.stage-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.chip.off { opacity: 0.32; cursor: not-allowed; }
+
+/* 关卡轨道（横向滚动，适配任意关数） */
+.level-track {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 2px 2px 6px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.level-chip {
+  position: relative;
+  appearance: none;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.12s ease, border-color 0.16s ease, background 0.16s ease;
+}
+.level-chip:active { transform: scale(0.94); }
+.level-chip i {
+  position: absolute;
+  right: 3px;
+  bottom: 2px;
+  font-size: 9px;
+  font-style: normal;
+  color: #7dffb8;
+}
+.level-chip.done {
+  border-color: rgba(120, 240, 180, 0.45);
+  background: linear-gradient(180deg, rgba(70, 214, 143, 0.28), rgba(18, 60, 42, 0.5));
+}
+.level-chip.current {
+  border-color: color-mix(in srgb, var(--wc) 70%, #fff);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--wc) 30%, transparent), 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+.level-chip.current span { color: #fff; }
+.level-chip.partial::after {
+  content: "";
+  position: absolute;
+  left: 4px; right: 4px; bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--wc) 80%, #fff);
+}
+.level-chip.locked { opacity: 0.32; cursor: not-allowed; }
+
+.result-sub {
+  margin-top: -6px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.stage-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: stretch;
+}
+.stage-actions .stage-btn { margin-top: 0; flex: 1 1 auto; }
+.stage-btn2 {
+  flex: 0 0 auto;
+  padding: 12px 14px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.stage-actions .locked-note { margin: 0; flex: 1 1 auto; align-self: center; }
+
+/* 阶段词表 */
+.topbar-title { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.topbar-title h2 { font-size: 19px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.word-rows { display: flex; flex-direction: column; gap: 6px; }
+
+.word-row {
+  appearance: none;
+  font-family: inherit;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.14s ease, border-color 0.14s ease;
+}
+.word-row:hover { background: rgba(255, 255, 255, 0.075); }
+.word-row:active { transform: scale(0.995); }
+.word-row.done {
+  border-color: rgba(120, 240, 180, 0.28);
+  background: rgba(60, 200, 130, 0.08);
+}
+.wr-idx {
+  flex: 0 0 26px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--dim);
+}
+.wr-main { flex: 1 1 auto; display: flex; align-items: baseline; gap: 8px; min-width: 0; flex-wrap: wrap; }
+.wr-main b { font-size: 15px; }
+.wr-main i { font-size: 10px; color: var(--cyan); font-family: ui-monospace, monospace; font-style: normal; }
+.wr-main em { font-size: 12px; color: var(--muted); font-style: normal; }
+.wr-state { flex: 0 0 auto; font-size: 12px; color: var(--green); letter-spacing: 1px; }
+.word-row:not(.done) .wr-state { color: rgba(255, 255, 255, 0.25); }
+
+.lv-divider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 2px 2px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed rgba(140, 190, 255, 0.16);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.lv-divider span { font-weight: 600; color: var(--dim); letter-spacing: 0; }
+
+
+.ws-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(140, 190, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  font-size: 14px;
+  outline: none;
+  -webkit-appearance: none;
+}
+.ws-search::placeholder { color: rgba(180, 200, 230, 0.45); }
+.ws-search:focus { border-color: rgba(255, 180, 90, 0.6); background: rgba(255, 255, 255, 0.06); }
+
+.level-chip.boss { color: #ffd27a; border-color: rgba(255, 200, 90, 0.45); }
+.level-chip.boss.done { background: rgba(255, 200, 90, 0.18); border-color: rgba(255, 200, 90, 0.7); }
+.level-chip.boss.current { box-shadow: 0 0 0 2px rgba(255, 200, 90, 0.35); }
+.title-tag { display: inline-block; margin-right: 8px; padding: 3px 9px; border-radius: 99px; font-size: 11px; font-weight: 800; color: #ffe2a0; background: rgba(255, 200, 90, 0.14); border: 1px solid rgba(255, 200, 90, 0.35); }
+.title-badge { align-self: center; padding: 7px 16px; border-radius: 99px; font-size: 14px; font-weight: 700; color: #ffe2a0; background: rgba(255, 200, 90, 0.12); border: 1px solid rgba(255, 200, 90, 0.35); }
+.title-badge b { color: #fff3c4; }

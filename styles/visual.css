@@ -1,0 +1,315 @@
+/* ==========================================================================
+   WORD NINJA — Visual v2.0
+   视觉升级层：在不改动主样式的前提下叠加"深夜森林 + 玻璃拟态"质感。
+   只使用系统字体与纯 CSS，不引入任何外部资源。
+   ========================================================================== */
+
+:root {
+  --v2-ink: #eaf3ff;
+  --v2-ink-soft: rgba(214, 232, 255, 0.72);
+  --v2-line: rgba(150, 200, 255, 0.20);
+  --v2-line-strong: rgba(160, 210, 255, 0.38);
+  --v2-glass: linear-gradient(180deg, rgba(38, 58, 98, 0.62), rgba(14, 24, 46, 0.78));
+  --v2-glass-hi: linear-gradient(180deg, rgba(64, 96, 158, 0.55), rgba(18, 30, 58, 0.82));
+  --v2-accent: #ff7a4d;
+  --v2-accent-2: #ff5f3d;
+  --v2-cyan: #63d3ff;
+  --v2-violet: #a98cff;
+  --v2-gold: #ffd76a;
+  --v2-radius: 18px;
+  --v2-shadow: 0 18px 44px rgba(2, 6, 18, 0.55);
+}
+
+/* ---------- 首页：极光夜空 ---------- */
+
+.screen[data-screen="home"] {
+  background:
+    radial-gradient(85% 48% at 15% 6%, rgba(96, 130, 255, 0.26), rgba(96, 130, 255, 0) 60%),
+    radial-gradient(78% 46% at 88% 12%, rgba(186, 126, 255, 0.22), rgba(186, 126, 255, 0) 62%),
+    radial-gradient(110% 60% at 50% 104%, rgba(64, 190, 232, 0.18), rgba(64, 190, 232, 0) 62%),
+    linear-gradient(180deg, #071027 0%, #0b1736 38%, #141a40 70%, #060a19 100%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.screen[data-screen="home"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1.6px 1.6px at 12% 14%, rgba(255, 255, 255, 0.85), transparent 60%),
+    radial-gradient(1.4px 1.4px at 74% 8%, rgba(210, 235, 255, 0.75), transparent 60%),
+    radial-gradient(1.2px 1.2px at 38% 22%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.8px 1.8px at 88% 30%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 58% 12%, rgba(220, 240, 255, 0.8), transparent 60%),
+    radial-gradient(1.2px 1.2px at 22% 34%, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1.6px 1.6px at 66% 26%, rgba(255, 255, 255, 0.65), transparent 60%),
+    radial-gradient(1.2px 1.2px at 46% 6%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1.4px 1.4px at 92% 16%, rgba(230, 243, 255, 0.7), transparent 60%),
+    radial-gradient(1.2px 1.2px at 6% 44%, rgba(255, 255, 255, 0.45), transparent 60%);
+  opacity: 0.9;
+  animation: v2-twinkle 6.5s ease-in-out infinite alternate;
+}
+
+@keyframes v2-twinkle {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+
+/* ---------- 标题发光 ---------- */
+
+.brand-title {
+  filter: drop-shadow(0 0 26px rgba(120, 170, 255, 0.35));
+}
+
+.brand-sub {
+  letter-spacing: 0.22em;
+  color: rgba(196, 220, 255, 0.72);
+}
+
+/* ---------- 玻璃卡片 ---------- */
+
+.panel,
+.tile-card,
+.world,
+.word-card {
+  backdrop-filter: blur(8px) saturate(112%);
+  -webkit-backdrop-filter: blur(8px) saturate(112%);
+}
+
+.tile-card {
+  background:
+    radial-gradient(120% 90% at 6% 4%, color-mix(in srgb, var(--tc, #6fa8ff) 18%, transparent), transparent 58%),
+    linear-gradient(165deg, rgba(46, 68, 112, 0.55), rgba(12, 21, 40, 0.82));
+  border-color: rgba(150, 200, 255, 0.16);
+  box-shadow: 0 12px 28px rgba(2, 6, 18, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.16s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tile-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--tc, #6fa8ff) 62%, transparent);
+  box-shadow: 0 18px 36px rgba(2, 6, 18, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* ---------- 按钮 ---------- */
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff9a5c 0%, #ff6a3d 46%, #e83a2c 100%);
+  border: 1px solid rgba(255, 214, 170, 0.55);
+  box-shadow:
+    0 14px 34px rgba(255, 92, 61, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.18);
+  transition: transform 0.14s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.06);
+  box-shadow:
+    0 18px 42px rgba(255, 92, 61, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-primary:active { transform: scale(0.975); }
+
+.btn-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+}
+
+.btn-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 46%);
+}
+
+/* ---------- 芯片 / 模式标签 ---------- */
+
+.chip {
+  border: 1px solid rgba(150, 200, 255, 0.18);
+  background: rgba(18, 30, 54, 0.55);
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
+}
+
+.chip:hover { border-color: rgba(160, 210, 255, 0.4); }
+
+.chip.on {
+  background: linear-gradient(135deg, rgba(255, 166, 92, 0.95), rgba(255, 106, 61, 0.95));
+  border-color: rgba(255, 210, 170, 0.6);
+  color: #1b0f08;
+  box-shadow: 0 8px 20px rgba(255, 110, 70, 0.28);
+}
+
+/* ---------- 顶栏 ---------- */
+
+.topbar h2,
+.topbar-title h2 {
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- 进度条 / 分数条 ---------- */
+
+.goal-strip {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.goal-strip .bar i {
+  background: linear-gradient(90deg, #63d3ff, #7f9dff 55%, #b78cff);
+  box-shadow: 0 0 14px rgba(110, 190, 255, 0.55);
+}
+
+/* ---------- 世界卡片 ---------- */
+
+.world {
+  box-shadow: var(--v2-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.world .btn-primary {
+  box-shadow: 0 12px 28px rgba(255, 92, 61, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* ---------- 安装诊断面板 ---------- */
+
+.pwa-diag {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(3, 7, 16, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.pwa-diag-box {
+  width: min(520px, 100%);
+  max-height: 80vh;
+  overflow: auto;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(150, 200, 255, 0.28);
+  background: linear-gradient(180deg, rgba(26, 40, 68, 0.98), rgba(10, 17, 32, 0.98));
+  color: #e8f2ff;
+}
+.pwa-diag-box h3 { margin: 0 0 12px; font-size: 17px; }
+.pwa-lines {
+  white-space: pre-wrap;
+  font-size: 12px;
+  line-height: 1.7;
+  font-family: ui-monospace, Consolas, monospace;
+  color: rgba(214, 234, 255, 0.9);
+  margin-bottom: 14px;
+}
+
+/* ---------- 结算页 ---------- */
+
+.result .score-num {
+  text-shadow: 0 6px 34px rgba(120, 190, 255, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+.result .big-stars {
+  filter: drop-shadow(0 4px 18px rgba(255, 200, 90, 0.45));
+}
+
+/* 入场：整块依次浮现 */
+.screen-inner.result > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+.screen-inner.result.res-in > * {
+  opacity: 1;
+  transform: none;
+}
+.screen-inner.result.res-in > *:nth-child(1) { transition-delay: 0.02s; }
+.screen-inner.result.res-in > *:nth-child(2) { transition-delay: 0.08s; }
+.screen-inner.result.res-in > *:nth-child(3) { transition-delay: 0.14s; }
+.screen-inner.result.res-in > *:nth-child(4) { transition-delay: 0.20s; }
+.screen-inner.result.res-in > *:nth-child(5) { transition-delay: 0.26s; }
+.screen-inner.result.res-in > *:nth-child(6) { transition-delay: 0.32s; }
+.screen-inner.result.res-in > *:nth-child(n + 7) { transition-delay: 0.38s; }
+
+/* 星星逐颗弹出 */
+.screen-inner.result .big-stars .star {
+  display: inline-block;
+  transform: scale(0.2);
+  opacity: 0;
+}
+.screen-inner.result.res-in .big-stars .star {
+  animation: starPop 0.46s cubic-bezier(0.2, 1.5, 0.45, 1) both;
+  animation-delay: calc(var(--i, 0) * 130ms + 220ms);
+}
+@keyframes starPop {
+  0% { opacity: 0; transform: scale(0.2) rotate(-28deg); }
+  60% { opacity: 1; transform: scale(1.28) rotate(6deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* 分数块轻微上浮 */
+.result .score-block {
+  transition: transform 0.42s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-inner.result .big-stars .star,
+  .screen-inner.result > * { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- 减少动效偏好 ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .screen[data-screen="home"]::before { animation: none; }
+}
+
+/* ---------- 安装引导（iOS 没有 beforeinstallprompt） ---------- */
+
+.install-card {
+  position: fixed;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  transform: translate(-50%, 140%);
+  width: min(440px, calc(100% - 28px));
+  z-index: 70;
+  transition: transform 0.42s cubic-bezier(0.2, 1.2, 0.4, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+.install-card.in { transform: translate(-50%, 0); opacity: 1; }
+.install-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(150, 205, 255, 0.30);
+  background:
+    radial-gradient(120% 100% at 0% 0%, rgba(110, 170, 255, 0.22), transparent 60%),
+    linear-gradient(180deg, rgba(30, 46, 78, 0.96), rgba(12, 20, 38, 0.98));
+  box-shadow: 0 18px 40px rgba(2, 6, 18, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.install-ico { font-size: 24px; line-height: 1; }
+.install-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.install-txt b { font-size: 14px; color: #eef6ff; }
+.install-txt span { font-size: 12px; line-height: 1.5; color: rgba(200, 222, 250, 0.8); }
+.install-x {
+  flex: 0 0 auto;
+  width: 30px; height: 30px;
+  border-radius: 99px;
+  border: 1px solid rgba(160, 200, 240, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(220, 238, 255, 0.8);
+  font-size: 13px;
+  cursor: pointer;
+}
+.install-x:active { transform: scale(0.94); }

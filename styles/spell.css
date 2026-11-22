@@ -1,0 +1,185 @@
+/* 拼写挑战 */
+.screen[data-screen="spell"] {
+  align-items: stretch;
+  justify-content: center;
+}
+
+#spell-root {
+  width: min(560px, 100%);
+  height: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.spell-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 100%;
+  padding: 18px 18px 28px;
+  box-sizing: border-box;
+}
+
+.spell-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spell-top .spell-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text, #eaf2ff);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spell-lives { font-size: 15px; letter-spacing: 2px; }
+.spell-lives .dead { opacity: 0.22; }
+
+.spell-progress {
+  height: 6px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.spell-progress i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #ffb347, #ff6b4a);
+  transition: width 0.35s ease;
+}
+
+.spell-card {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 20px 18px 18px;
+  background: linear-gradient(180deg, rgba(26, 38, 62, 0.92), rgba(16, 24, 42, 0.92));
+  border: 1px solid rgba(140, 190, 255, 0.16);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+.spell-pos {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(160, 190, 230, 0.75);
+}
+
+.spell-meaning {
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #f4f8ff;
+  word-break: break-word;
+}
+
+.spell-hear {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 99px;
+  border: 1px solid rgba(140, 190, 255, 0.28);
+  background: rgba(90, 150, 255, 0.12);
+  color: #cfe2ff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.spell-hear:active { transform: scale(0.97); }
+
+.spell-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.spell-slot {
+  width: 38px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1.5px solid rgba(140, 190, 255, 0.22);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: lowercase;
+}
+.spell-slot.filled { border-color: rgba(120, 230, 170, 0.55); background: rgba(80, 220, 150, 0.10); }
+.spell-slot.hinted { color: #ffd27a; border-color: rgba(255, 190, 90, 0.5); }
+.spell-slot.wrong { border-color: rgba(255, 110, 110, 0.75); background: rgba(255, 80, 80, 0.14); }
+.spell-slot.caret { border-color: rgba(255, 180, 90, 0.9); box-shadow: 0 0 0 2px rgba(255, 180, 90, 0.18); }
+.spell-slot.gap { width: 16px; border: 0; background: none; }
+
+.spell-input {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  border: 0;
+  padding: 0;
+  font-size: 16px; /* 防止 iOS 缩放 */
+}
+
+.spell-tip {
+  min-height: 22px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(180, 205, 240, 0.85);
+}
+.spell-tip.ok { color: #6ef0b0; }
+.spell-tip.bad { color: #ff8a8a; }
+
+.spell-actions { display: flex; gap: 12px; }
+.spell-actions .btn { flex: 1; }
+
+.spell-result {
+  margin: auto 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.spell-result h2 { font-size: 28px; margin: 0; }
+.spell-result .stars { font-size: 34px; letter-spacing: 6px; color: #ffcf5a; }
+.spell-result .stats { display: flex; justify-content: center; gap: 22px; color: rgba(190, 210, 240, 0.85); font-size: 14px; }
+.spell-result .stats b { display: block; font-size: 22px; color: #fff; }
+
+.spell-wrong {
+  margin-top: 6px;
+  text-align: left;
+  max-height: 32vh;
+  overflow: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(140, 190, 255, 0.14);
+  padding: 10px 14px;
+}
+.spell-wrong div { padding: 5px 0; font-size: 14px; color: rgba(220, 232, 250, 0.9); }
+.spell-wrong b { color: #ffd27a; margin-right: 8px; }
+
+.spell-meaning.muted { color: rgba(170, 200, 235, 0.55); font-size: 17px; font-weight: 600; }
+
+.spell-timer { font-size: 14px; font-weight: 800; color: #ffe27a; letter-spacing: 0.02em; white-space: nowrap; }
+.spell-timer.danger { color: #ff8a7a; animation: pulse 0.9s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
